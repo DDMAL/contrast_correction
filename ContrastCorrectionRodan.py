@@ -21,8 +21,8 @@ class ContrastCorrection(RodanTask):
         'maximum': 1
     }]
     output_port_types = [{
-        'name': 'RGB PNG image',
-        'resource_types': ['image/rgb+png'],
+        'name': 'Image',
+        'resource_types': ['image/'],
         'minimum': 1,
         'maximum': 1
     }]
@@ -47,18 +47,16 @@ class ContrastCorrection(RodanTask):
     def run_my_task(self, inputs, settings, outputs):
         from . import contrast_correction_engine as Engine
 
-        print("Hello World")
-        print(inputs)
-        print(outputs)
         load_image_path = inputs['Image'][0]['resource_path']
+        extension = outputs['Image'][0]['resource_path'][-3:].replace(".","")
         image = Engine.load_image(load_image_path)
 
         # Remove background here.
         image_processed = Engine.contrast_and_brightness(image, settings["contrast"], settings["brightness"])
 
-        save_image_path = "{}.png".format(outputs['RGB PNG image'][0]['resource_path'])
+        save_image_path = "{}.png".format(outputs['Image'][0]['resource_path'])
         Engine.save_image(save_image_path, image_processed)
-        os.rename(save_image_path,outputs['RGB PNG image'][0]['resource_path'])
+        os.rename(save_image_path,outputs['Image'][0]['resource_path'])
         return True
 
     def my_error_information(self, exc, traceback):
