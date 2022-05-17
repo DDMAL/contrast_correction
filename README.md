@@ -15,4 +15,4 @@ Parameters:
   * **-c** `Amount to adjust contrast by. Can be negative.` (**Default:** *0.0*)
   * **-b** `Amount to adjust brightness by. Can be negative` (**Default:** *0.0*)
     
-Example: `python3 ContrastCorrectionLocalTask.py -psr datasets/images/MS73 -out dataset/output/MS73 -pfx _cbc -c 127.0 -b 5.0`
+Example: `python3 ContrastCorrectionLocalTask.py -psr datasets/images/MS73 -out datasets/output/MS73 -pfx _cbc -c 127.0 -b 5.0`
