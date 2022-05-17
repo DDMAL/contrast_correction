@@ -15,7 +15,7 @@ class ContrastCorrection(RodanTask):
     interactive = False
 
     input_port_types = [{
-        'name': 'PNG Image',
+        'name': 'Image',
         'resource_types': lambda mime: mime.startswith('image/'),
         'minimum': 1,
         'maximum': 1
@@ -35,11 +35,11 @@ class ContrastCorrection(RodanTask):
         'properties': {
             'contrast': {
                 'type': 'number',
-                'default': 127
+                'default': 0.0
             },
             'brightness': {
                 'type': 'number',
-                'default': 0
+                'default': 0.0
             }
         }
     }
@@ -47,7 +47,10 @@ class ContrastCorrection(RodanTask):
     def run_my_task(self, inputs, settings, outputs):
         from . import contrast_correction_engine as Engine
 
-        load_image_path = inputs['PNG image'][0]['resource_path']
+        print("Hello World")
+        print(inputs)
+        print(outputs)
+        load_image_path = inputs['Image'][0]['resource_path']
         image = Engine.load_image(load_image_path)
 
         # Remove background here.
