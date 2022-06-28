@@ -12,5 +12,5 @@ setup(
     license='MIT License',
     packages=['contrast_correction'],
     install_requires=requirements,
-    python_requires=">=3.7.5"
+    python_requires=">=3.7.3"
 )
